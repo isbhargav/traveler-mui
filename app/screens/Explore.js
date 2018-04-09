@@ -2,17 +2,17 @@ import React from "react";
 import { View, ScrollView } from "react-native";
 import { Text, Card } from "react-native-elements";
 
-export default class Hotels extends React.Component {
+export default class Explore extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      hotels: []
+      sites: []
     };
   }
   componentWillMount() {
-    this.fetchotels();
+    this.fetchSites();
   }
-  fetchotels = async () => {
+  fetchSites = async () => {
     let cord = this.props.navigation.state.params.cords;
     let url = `https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=${
       cord.lat
@@ -21,19 +21,19 @@ export default class Hotels extends React.Component {
     }&radius=500&type=restaurant&key=AIzaSyD3Vmuxr5TbEe588cVdsBoR6fPrGj5uY8Y`;
     let res = await fetch(url);
     const json = await res.json();
-    const hotels = json.results;
+    const sites = json.results;
     console.log(
-      hotels.map(h => {
+      sites.map(h => {
         console.log("Address = " + h.vicinity);
       })
     );
-    this.setState({ hotels });
+    this.setState({ sites });
   };
   render() {
     return (
       <ScrollView>
         <View>
-          {this.state.hotels.map((h, k) => (
+          {this.state.sites.map((h, k) => (
             <Card key={k} title={h.name}>
               <Text>{h.vicinity}</Text>
             </Card>

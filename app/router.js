@@ -1,4 +1,4 @@
-import React from 'react'
+import React from "react";
 import { StackNavigator, TabNavigator } from "react-navigation";
 import { FontAwesome } from "react-native-vector-icons";
 
@@ -7,10 +7,14 @@ import SignIn from "./screens/SignIn";
 
 import Home from "./screens/Home";
 import Profile from "./screens/Profile";
-import NewTrip from './screens/NewTrip';
+import NewTrip from "./screens/NewTrip";
 import Hotels from "./screens/Hotels";
 import Companions from "./screens/Companions";
 import Resevations from "./screens/Reservations";
+import AddCompanion from "./screens/AddComapanion";
+import Notes from "./screens/Notes";
+import NewNote from "./screens/NewNote";
+import Explore from "./screens/Explore"
 
 export const SignedIn = TabNavigator({
   Home: {
@@ -52,16 +56,40 @@ export const SignedOut = StackNavigator({
       title: "NewTrip"
     }
   },
+  Notes: {
+    screen: Notes,
+    navigationOptions: {
+      title: "Notes"
+    }
+  },
+  NewNote: {
+    screen: NewNote,
+    navigationOptions: {
+      title: "New Note"
+    }
+  },
   Companions: {
     screen: Companions,
     navigationOptions: {
       title: "Companions"
     }
   },
+  AddCompanion: {
+    screen: AddCompanion,
+    navigationOptions: {
+      title: "Add"
+    }
+  },
   Hotels: {
     screen: Hotels,
     navigationOptions: {
       title: "Hotels"
+    }
+  },
+  Hotels: {
+    screen: Explore,
+    navigationOptions: {
+      title: "Explore"
     }
   },
   Reservations: {

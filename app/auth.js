@@ -1,26 +1,18 @@
-
 import { AsyncStorage } from "react-native";
 
+import firebase from "./firebase-config";
 
-import firebase from './firebase-config'
+export let USER_KEY = "auth-demo";
 
-export let USER_KEY = "auth-demo"
-
-export const onSignIn = async (email,pass) => { 
-  
-  
-  // let user = await firebase.auth().signInWithEmailAndPassword(email,pass);
-  // if(user!=null)
-  // {
-  //    USER_KEY=user.uid
-  //     AsyncStorage.setItem('user',JSON.stringify(user.providerData[0]))
-  //     AsyncStorage.setItem(USER_KEY, "true");
-  // }
-  
-}
-
-  
-  
+export const onSignIn = async (email, pass) => {
+  //User authentication logic and save to local storage user
+  let user = await firebase.auth().signInWithEmailAndPassword(email, pass);
+  if (user != null) {
+    USER_KEY = user.uid;
+    AsyncStorage.setItem("user", JSON.stringify(user.providerData[0]));
+    AsyncStorage.setItem(USER_KEY, "true");
+  }
+};
 
 export const onSignOut = () => AsyncStorage.removeItem(USER_KEY);
 
@@ -37,4 +29,3 @@ export const isSignedIn = () => {
       .catch(err => reject(err));
   });
 };
-
